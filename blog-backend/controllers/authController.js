@@ -40,7 +40,20 @@ exports.signup = [
     body('username').trim().isLength({ min: 1 })
         .withMessage('Username must be specified.')
         .isAlphanumeric()
-        .withMessage('Username has non-alphanumeric characters.'),
+        .withMessage('Username has non-alphanumeric characters.')
+        .custom((value, { req }) => {
+            return User.findOne({ username: value }).then(
+                (user) => {
+                    if (user) {
+                        return Promise.reject('Username already exists.');
+                    }
+                    return Promise.resolve();
+                },
+                (reason) => {
+                    return Promise.reject(reason);
+                }
+            );
+        }),
     body('password').trim().isLength({ min: 8 })
         .withMessage('Password must be at least 8 chars long'),
     body('password_confirm', 'Password confirmation field must have the same value as the password field')
