@@ -1,12 +1,21 @@
+require('dotenv').config()
+require('./lib/passport');
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 
 var app = express();
+
+// MongoDB Setup
+const mongoDB = process.env.MONGODB_URL;
+mongoose.connect(mongoDB, { useUnifiedTopology: true, useNewUrlParser: true });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'mongo connection error'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
