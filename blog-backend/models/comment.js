@@ -14,12 +14,12 @@ var CommentSchema = new Schema(
 );
 
 // Virtual for relative publish timestamp
-MessageSchema.virtual('publishDateRelative').get(function() {
+CommentSchema.virtual('publishDateRelative').get(function() {
     return moment(this.createdAt).fromNow();
 });
 
 // Virtual for formatted publish timestamp
-MessageSchema.virtual('publishDateFormatted').get(function() {
+CommentSchema.virtual('publishDateFormatted').get(function() {
     return moment(this.createdAt).format('llll');
 });
 

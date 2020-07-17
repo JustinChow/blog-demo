@@ -18,12 +18,12 @@ var PostSchema = new Schema(
 );
 
 // Virtual for relative publish timestamp
-MessageSchema.virtual('publishDateRelative').get(function() {
+PostSchema.virtual('publishDateRelative').get(function() {
     return moment(this.publishDate).fromNow();
 });
 
 // Virtual for formatted publish timestamp
-MessageSchema.virtual('publishDateFormatted').get(function() {
+PostSchema.virtual('publishDateFormatted').get(function() {
     return moment(this.publishDate).format('llll');
 });
 
