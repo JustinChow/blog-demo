@@ -8,7 +8,6 @@ var PostSchema = new Schema(
         author: {type: Schema.Types.ObjectId, ref: 'User', required: true},
         title: {type: String, required: true},
         content: {type: String, required: true},
-        post: {type: Schema.Types.ObjectId, ref: 'Post', required: true},
         isPublished: {type: Boolean, required: true},
         publishDate: {type: Date}
     },
