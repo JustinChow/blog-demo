@@ -13,3 +13,8 @@ exports.posts_get = function(req, res) {
 exports.postId_get = function(req, res) {
     res.send('Getting post ' + req.params.postId);
 };
+
+// Handle POST on posts
+exports.posts_post = function(req,res) {
+    res.send('Authenticated for creating post');
+}

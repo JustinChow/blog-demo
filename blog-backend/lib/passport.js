@@ -1,9 +1,12 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const passportJWT = require('passport-jwt');
+const JWTStrategy = require('passport-jwt').Strategy;
+const ExtractJWT = passportJWT.ExtractJwt;
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 
-// Password authentication helper functions
+// Password authentication strategy
 passport.use(
     new LocalStrategy((username, password, done) => {
         User.findOne({ username: username }, (err, user) => {
@@ -24,3 +27,15 @@ passport.use(
         });
     })
   );
+
+
+  // Token authentication strategy
+passport.use(new JWTStrategy({
+        jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+        secretOrKey   : process.env.JWT_SECRET
+    },
+    function (jwtPayload, done) {
+        //find the user in db if needed. This functionality may be omitted if you store everything you'll need in JWT payload.
+        return done(null, jwtPayload);
+    }
+));

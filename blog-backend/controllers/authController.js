@@ -23,6 +23,7 @@ exports.login = function(req, res) {
            }
 
            payload = {
+               id: user.get('id'),
                username: user.get('username'),
                isAdmin: user.get('isAdmin'),
            }
