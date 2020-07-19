@@ -29,7 +29,7 @@ passport.use(
   );
 
 
-  // Token authentication strategy
+// Token authentication strategy
 passport.use(new JWTStrategy({
         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
         secretOrKey   : process.env.JWT_SECRET

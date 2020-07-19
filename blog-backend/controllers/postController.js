@@ -3,6 +3,8 @@ const Post = require('../models/post');
 const async = require('async');
 const mongoose = require('mongoose');
 const moment = require('moment');
+const passport = require('passport');
+const authController = require('../controllers/authController');
 
 const { body, validationResult } = require('express-validator');
 
@@ -18,6 +20,12 @@ exports.postId_get = function(req, res) {
 
 // Handle POST on posts
 exports.posts_post = [
+    // Authenticate user
+    passport.authenticate('jwt', {session: false}),
+
+    // Only allow admins to post
+    authController.isAdmin,
+
     // Validate fields
     body('title').trim().isLength({ min: 1 })
         .withMessage('Title must be specified.'),

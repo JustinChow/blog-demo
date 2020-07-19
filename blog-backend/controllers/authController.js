@@ -6,7 +6,15 @@ const User = require('../models/user');
 
 const { body, validationResult } = require('express-validator');
 
-
+// Middleware to ensure only admins can proceed to the next middleware
+exports.isAdmin = function(req, res, next) {
+    if (req.user.isAdmin) {
+        next();
+    }
+    else {
+        res.sendStatus(403);
+    }
+}
 
 // Handle POST on login
 exports.login = function(req, res) {

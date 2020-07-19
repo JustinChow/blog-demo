@@ -7,8 +7,7 @@ const commentsRouter = require('./comments');
 
 // Post routes
 router.get('/', postsController.posts_get);
-router.post('/', passport.authenticate('jwt', {session: false}),
-   postsController.posts_post);
+router.post('/', postsController.posts_post);
 router.get('/:postId', postsController.postId_get);
 
 router.use('/:postId/comments', function(req, res, next) { 
