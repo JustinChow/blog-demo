@@ -9,8 +9,16 @@ const authController = require('../controllers/authController');
 const { body, validationResult } = require('express-validator');
 
 // Handle GET on posts
-exports.posts_get = function(req, res) {
-    res.send('Getting posts');
+exports.posts_get = function(req, res, next) {
+    Post.find({isPublished: true}, 'title author publishDate')
+        .populate('author', 'username')
+        .exec(function (err, posts_list) {
+            if (err) { 
+                return next(err); 
+            }
+
+            res.json(posts_list);
+        });
 };
 
 // Handle on GET on post Id
