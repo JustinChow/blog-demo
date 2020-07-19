@@ -23,7 +23,15 @@ exports.posts_get = function(req, res, next) {
 
 // Handle on GET on post Id
 exports.postId_get = function(req, res) {
-    res.send('Getting post ' + req.params.postId);
+    Post.findById(req.params.postId, 'title author content publishDate')
+        .populate('author', 'username')
+        .exec(function (err, post) {
+            if (err) {
+                return next(err);
+            }
+
+            res.json(post);
+        });
 };
 
 // Handle POST on posts
