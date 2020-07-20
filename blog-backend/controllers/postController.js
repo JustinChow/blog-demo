@@ -62,7 +62,7 @@ exports.posts_post = [
             res.status(400).json(errors);
         }
         else {
-            // Create a Message object with escaped and trimmed data.
+            // Create a Post object with escaped and trimmed data.
             var post = new Post({ 
                 title: req.body.title,
                 content: req.body.content,
