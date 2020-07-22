@@ -11,7 +11,7 @@ export class Posts extends React.Component {
     }
 
     componentWillMount() {
-        fetch('/posts')
+        fetch('api/posts')
             .then(results => {
                 return results.json();
             })
