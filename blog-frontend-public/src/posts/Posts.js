@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 export class Posts extends React.Component {
@@ -27,7 +27,7 @@ export class Posts extends React.Component {
             <div className='posts-container'>
                 {this.state.posts.map(post => (
                     <div key={post._id} className='post'>
-                        <h1>{post.title}</h1>
+                        <Link to={'/posts/' + post._id}><h1>{post.title}</h1></Link>
                         <p>{post.author.username}</p>
                         <p>{moment(post.publishDate).format('MMMM Do YYYY, h:mm:ss a')}</p>
                         <p>{post.content.slice(0,300) + "..."}</p>
