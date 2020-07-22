@@ -30,6 +30,7 @@ export class Posts extends React.Component {
                         <h1>{post.title}</h1>
                         <p>{post.author.username}</p>
                         <p>{moment(post.publishDate).format('MMMM Do YYYY, h:mm:ss a')}</p>
+                        <p>{post.content.slice(0,300) + "..."}</p>
                     </div>
                 ))}
             </div>

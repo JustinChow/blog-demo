@@ -10,7 +10,7 @@ const { body, validationResult } = require('express-validator');
 
 // Handle GET on posts
 exports.posts_get = function(req, res, next) {
-    Post.find({isPublished: true}, 'title author publishDate')
+    Post.find({isPublished: true}, 'title author publishDate content')
         .populate('author', 'username')
         .sort('-publishDate')
         .exec(function (err, posts_list) {
