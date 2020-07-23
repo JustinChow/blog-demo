@@ -13,7 +13,7 @@ export class Post extends React.Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         var postId = this.props.match.params.postId;
         fetch('/api/posts/' + postId)
             .then(results => {

@@ -10,7 +10,7 @@ export class Posts extends React.Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         fetch('api/posts')
             .then(results => {
                 return results.json();
@@ -27,7 +27,7 @@ export class Posts extends React.Component {
             <div className='posts-container'>
                 {this.state.posts.map(post => (
                     <div key={post._id} className='post'>
-                        <Link to={'/posts/' + post._id}><h1>{post.title}</h1></Link>
+                    <h1><Link to={'/posts/' + post._id}>{post.title}</Link></h1>
                         <p>{post.author.username}</p>
                         <p>{moment(post.publishDate).format('MMMM Do YYYY, h:mm:ss a')}</p>
                         <p>{post.content.slice(0,300) + "..."}</p>

@@ -9,7 +9,7 @@ export class Comments extends React.Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         var postId = this.props.match.params.postId;
         fetch('/api/posts/' + postId + '/comments')
             .then(results => {
