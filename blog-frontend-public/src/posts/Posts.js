@@ -27,7 +27,7 @@ export class Posts extends React.Component {
             <div className='posts-container'>
                 {this.state.posts.map(post => (
                     <div key={post._id} className='post'>
-                    <h1><Link to={'/posts/' + post._id}>{post.title}</Link></h1>
+                    <h2><Link to={'/posts/' + post._id}>{post.title}</Link></h2>
                         <p>{post.author.username}</p>
                         <p>{moment(post.publishDate).format('MMMM Do YYYY, h:mm:ss a')}</p>
                         <p>{post.content.slice(0,300) + "..."}</p>

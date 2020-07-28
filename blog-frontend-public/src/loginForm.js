@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthService from './services/authentication';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 export class LoginForm extends React.Component {
     constructor(props) {
@@ -42,17 +42,22 @@ export class LoginForm extends React.Component {
     render() {
         if (!this.state.loginSuccessful) {
             return (
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Username:
-                <input type="text" value={this.state.usernameValue} onChange={this.handleUsernameChange} />
-                    </label>
-                    <label>
-                        Password:
-                <input type="password" value={this.state.passwordValue} onChange={this.handlePasswordChange} />
-                    </label>
-                    <input type="submit" value="Submit" />
-                </form>
+                <div>
+                    <Link to='/'>Go Home</Link>
+                    <h1>Login</h1>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            Username:
+                        <input type="text" value={this.state.usernameValue} onChange={this.handleUsernameChange} />
+                        </label>
+                        <label>
+                            Password:
+                        <input type="password" value={this.state.passwordValue} onChange={this.handlePasswordChange} />
+                        </label>
+                        <input type="submit" value="Submit" />
+                    </form>
+                </div>
+                
             );    
         }
         else {

@@ -31,7 +31,7 @@ export class Post extends React.Component {
                     <Link to='/'>Go Home</Link>
                     <div className='post-container'>
                         <div key={this.state.post._id} className='post'>
-                            <h1>{this.state.post.title}</h1>
+                            <h2>{this.state.post.title}</h2>
                             <p>{this.state.post.author.username}</p>
                             <p>{moment(this.state.post.publishDate).format('MMMM Do YYYY, h:mm:ss a')}</p>
                             <p>{this.state.post.content}</p>

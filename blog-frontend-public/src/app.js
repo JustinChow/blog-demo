@@ -8,8 +8,10 @@ import {
 import React from 'react';
 import { Posts } from './posts/Posts';
 import { PostView } from './post/index';
-import { LoginView } from './login';
+import { LoginForm } from './loginForm';
 import authService from './services/authentication';
+import { SignupForm } from './signupForm';
+import './app.css';
 
 export class App extends React.Component {
     constructor(props) {
@@ -31,12 +33,22 @@ export class App extends React.Component {
         };
         return(
             <Router>
-                {!this.state.user && <Link to='/login'>Login</Link>}
+                <ul>
+                    <li>{!this.state.user && <Link to='/login'>Login</Link>}</li>
+                    <li>{!this.state.user && <Link to='/Signup'>Sign Up</Link>}</li>
+                </ul>
+                
                 {this.state.user && <p>Welcome, {this.state.user.username}</p>}
                 {this.state.user && <a href='/' onClick={handleLogout}>Logout</a>}
+
+                <h1>Homepage</h1>
+
                 <Switch>
+                    <Route path='/Signup'>
+                        {this.state.user ? <Redirect to="/" /> : <SignupForm/>}
+                    </Route>
                     <Route path='/login'>
-                        {this.state.user ? <Redirect to="/" /> : <LoginView/>}
+                        {this.state.user ? <Redirect to="/" /> : <LoginForm/>}
                     </Route>
                     <Route path='/posts/:postId' render={(props) => <PostView {...props} user={this.state.user}/>} />
 

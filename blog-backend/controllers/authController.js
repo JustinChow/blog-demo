@@ -65,7 +65,7 @@ exports.signup = [
         }),
     body('password').trim().isLength({ min: 8 })
         .withMessage('Password must be at least 8 chars long'),
-    body('password_confirm', 'Password confirmation field must have the same value as the password field')
+    body('passwordConfirm', 'Password confirmation field must have the same value as the password field')
         .exists()
         .custom((value, { req }) => value === req.body.password),
 
@@ -93,7 +93,7 @@ exports.signup = [
                     if (err) {
                         return next(err);
                     };
-                    res.status(200).send(savedDoc);
+                    res.status(200).send({user: savedDoc});
                 });
             });
         }

@@ -1,0 +1,13 @@
+ul {
+    list-style-type: none;
+    padding-inline-start: 0px;
+}
+
+input {
+    display: block;
+}
+
+/* li {
+    display: inline;
+    margin-left: 10px;
+} */
