@@ -14,12 +14,17 @@ class AuthService {
         })
             .then(data => data.json())
             .then(response => {
-                if (response.token) {
-                    localStorage.setItem('admin_user', JSON.stringify(response.payload));
+                if (response.token && response.user && response.user.isAdmin) {
+                    localStorage.setItem('admin_user', JSON.stringify(response.user));
                     localStorage.setItem('admin_token', JSON.stringify(response.token));
+                    return {token: response.token};
                 }
-
-                return response.token;
+                else if (response.token && response.user && !response.user.isAdmin) {
+                    return {error: {msg: 'User is not an admin'}};
+                }
+                else {
+                    return  {error: {msg: 'Login failed'}};
+                }
             });
     }
 

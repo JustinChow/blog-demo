@@ -15,7 +15,7 @@ class AuthService {
             .then(data => data.json())
             .then(response => {
                 if (response.token) {
-                    localStorage.setItem('user', JSON.stringify(response.payload));
+                    localStorage.setItem('user', JSON.stringify(response.user));
                     localStorage.setItem('token', JSON.stringify(response.token));
                 }
 

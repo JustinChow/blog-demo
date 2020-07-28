@@ -69,13 +69,6 @@ export class CreatePost extends React.Component {
                 errors.push(<li key={i}>{this.state.errors[i].msg}</li>)
             }
         }
-
-        if (this.state.postSuccessful && this.state.isPublishedValue) {
-            return(<Redirect to={'/posts/' + this.state.postId}/>);
-        }
-        else if (this.state.postSuccessful && !this.state.isPublishedValue) {
-            return(<Redirect to='/'/>);
-        }
         else {
             return (
                 <div>
@@ -98,6 +91,8 @@ export class CreatePost extends React.Component {
                             onChange={this.handleIsPublishedChange} />
                         <input type="submit" value="Create New Post" />
                     </form>
+
+                    { this.state.postSuccessful && <p>Successfully posted!</p>} 
     
                     { this.state.errors && 
                         <ul>

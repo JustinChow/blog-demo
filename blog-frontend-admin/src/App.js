@@ -37,7 +37,7 @@ class App extends React.Component {
 
                 <Switch>
                     <Route path='/admin/login'>
-                        {this.state.user ? <Redirect to="/" /> : <LoginForm/>}
+                        {this.state.user ? <Redirect to="/admin" /> : <LoginForm/>}
                     </Route>
                     <Route path='/admin'>
                     {!this.state.user ? <Redirect to="/admin/login" /> : <CreatePost user={this.state.user}/>}

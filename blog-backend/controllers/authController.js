@@ -30,7 +30,7 @@ exports.login = function(req, res) {
                res.send(err);
            }
 
-           payload = {
+           var payload = {
                id: user.get('id'),
                username: user.get('username'),
                isAdmin: user.get('isAdmin'),
@@ -38,7 +38,7 @@ exports.login = function(req, res) {
 
            // generate a signed son web token with the contents of user object and return it in the response
            const token = jwt.sign(payload, process.env.JWT_SECRET);
-           return res.json({payload, token});
+           return res.json({user: payload, token});
         });
     })(req, res);
 };

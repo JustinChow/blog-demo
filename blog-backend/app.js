@@ -29,7 +29,25 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
+// when going to `/admin`, serve the admin frontend files as static files
+app.use('/admin', express.static(path.join(__dirname, '../blog-frontend-admin/build')));
+
+// Serve public frontend
+app.use(express.static(path.join(__dirname, '../blog-frontend-public/build')));
+
+// Serve API routes
 app.use('/api', apiRouter);
+
+// Serve admin frontend
+app.get('/admin/*', (req, res) => {
+    console.log("adminadminadminadmi");
+    res.sendFile(path.join(__dirname + '/../blog-frontend-admin/build/index.html'));
+});
+
+// "catchall" frontend handler to direct to public index.html file
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/../blog-frontend-public/build/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -9,6 +9,7 @@ export class LoginForm extends React.Component {
             usernameValue: '',
             passwordValue: '',
             loginSuccessful: false,
+            error: undefined
         };
 
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -27,13 +28,16 @@ export class LoginForm extends React.Component {
     handleSubmit(event) {
         AuthService.login(this.state.usernameValue, this.state.passwordValue)
             .then(response => {
-                if (typeof response !== 'undefined') {
+                if (response.token) {
                     this.setState({loginSuccessful: true});
 
                     // Needed to update the user state for App component. Would
                     // be good to start using Redux if the login/authentication
                     // system were to be refactored.
                     window.location.reload(false); 
+                }
+                else if (response.error) {
+                    this.setState({error: response.error.msg});
                 }
             });
         event.preventDefault();
@@ -43,7 +47,6 @@ export class LoginForm extends React.Component {
         if (!this.state.loginSuccessful) {
             return (
                 <div>
-                    <Link to='/admin'>Go to Admin homepage</Link>
                     <h1>Login</h1>
                     <form onSubmit={this.handleSubmit}>
                         <label>
@@ -56,6 +59,7 @@ export class LoginForm extends React.Component {
                         </label>
                         <input type="submit" value="Submit" />
                     </form>
+                    {this.state.error && <p>{this.state.error}</p>}
                 </div>
                 
             );    
