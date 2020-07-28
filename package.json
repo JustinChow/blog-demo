@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "devstart": "nodemon ./bin/www"
+    "devstart": "nodemon ./bin/www",
+    "heroku-postbuild": "cd blog-frontend-admin && npm install && npm run build && cd ../blog-frontend-public && npm install && npm run build"
   },
   "dependencies": {
     "async": "^3.2.0",
