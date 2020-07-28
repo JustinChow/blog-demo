@@ -1,0 +1,5 @@
+textarea {
+    display: block;
+    resize: vertical;
+    width: 50%;
+}

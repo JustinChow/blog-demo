@@ -1,0 +1,20 @@
+ul {
+    list-style-type: none;
+    padding-inline-start: 0px;
+}
+
+input {
+    display: block;
+}
+
+textarea {
+    display: block;
+}
+
+#title {
+    width: 50%;
+}
+
+input[type='checkbox'] {
+    display: inline;
+}
