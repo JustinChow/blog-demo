@@ -1,5 +1,6 @@
 import {
     BrowserRouter as Router,
+    Redirect,
     Switch,
     Route,
     Link,
@@ -34,7 +35,7 @@ export class App extends React.Component {
                 {this.state.user && <a href='/' onClick={handleLogout}>Logout</a>}
                 <Switch>
                     <Route path='/login'>
-                        <LoginView/>
+                        {this.state.user ? <Redirect to="/" /> : <LoginView/>}
                     </Route>
                     <Route path='/posts/:postId' component={PostView} />
 
