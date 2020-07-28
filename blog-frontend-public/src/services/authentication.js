@@ -12,15 +12,15 @@ class AuthService {
                 password
             })
         })
-        .then(data => data.json())
-        .then(response => {
-            if (response.token) {
-                localStorage.setItem('user', JSON.stringify(response.payload));
-                localStorage.setItem('token', JSON.stringify(response.token));
-            }
-            
-            return response.token;
-        });
+            .then(data => data.json())
+            .then(response => {
+                if (response.token) {
+                    localStorage.setItem('user', JSON.stringify(response.payload));
+                    localStorage.setItem('token', JSON.stringify(response.token));
+                }
+
+                return response.token;
+            });
     }
 
     logout() {
@@ -40,7 +40,7 @@ class AuthService {
                 passwordConfirm
             })
         })
-        .then(data => data.json());
+            .then(data => data.json());
     }
 
     getCurrentUser() {
@@ -49,6 +49,17 @@ class AuthService {
 
     getToken() {
         return JSON.parse(localStorage.getItem('token'));;
+    }
+
+    authHeader() {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const token = JSON.parse(localStorage.getItem('token'));
+
+        if (user && token) {
+            return { Authorization: 'Bearer ' + token };
+        } else {
+            return {};
+        }
     }
 }
 

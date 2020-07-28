@@ -32,12 +32,13 @@ export class App extends React.Component {
         return(
             <Router>
                 {!this.state.user && <Link to='/login'>Login</Link>}
+                {this.state.user && <p>Welcome, {this.state.user.username}</p>}
                 {this.state.user && <a href='/' onClick={handleLogout}>Logout</a>}
                 <Switch>
                     <Route path='/login'>
                         {this.state.user ? <Redirect to="/" /> : <LoginView/>}
                     </Route>
-                    <Route path='/posts/:postId' component={PostView} />
+                    <Route path='/posts/:postId' render={(props) => <PostView {...props} user={this.state.user}/>} />
 
                     <Route path='/'>
                         <div>
