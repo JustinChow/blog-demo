@@ -8,7 +8,7 @@
     "heroku-postbuild": "cd blog-frontend-admin && npm install && npm run build && cd ../blog-frontend-public && npm install && npm run build"
   },
   "dependencies": {
-    "async": "^3.2.0",
+    "async": "^3.2.2",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
